@@ -3,6 +3,8 @@
 
 class Contact
 {
+// _ en el nom de la variable per mes endevant distinjir que es privada, es
+// quelcom que fa la gent a c++
 	private:
 		std::string _firstName;
 		std::string _lastName;
@@ -22,7 +24,7 @@ class Contact
 		std::string GetNickName();
 		std::string GetPhoneNumber();
 		std::string GetDarkestSecret();
-}
+};
 //Como definir el contructor?
 //Como definir los metodos?
 //Replicarlo en el PhoneBook.hpp

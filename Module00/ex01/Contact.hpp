@@ -19,15 +19,23 @@ class Contact
 		Contact();
 //method constructor👷: debe llevar el mismo nombre que la clase y sirve para
 //inicializar variables o cosas varias para preparar los objetos
-		Contact(std::string, std::string, std::string, std::string, std::string);
+		 Contact(const std::string& firstName, const std::string& lastName,
+            const std::string& nickName, const std::string& phoneNumber,
+            const std::string& darkestSecret);
+//		Contact(std::string, std::string, std::string, std::string, std::string);
 //method destructor👹: debe llevar el mismo nombre pero con ~ delante. Lo destruye
 //y se utiliza para eliminar mallocs(de c++)
 		~Contact();
+		void SetContact(const std::string& firstName, const std::string& lastName,
+                    const std::string& nickName, const std::string& phoneNumber,
+                    const std::string& darkestSecret);
+		void DisplayShort(int index) const; // Display in a table format (short view)
+		void DisplayFull() const;/*
 		std::string GetFirstName() const;
 		std::string GetLastName() const;
 		std::string GetNickName() const;
 		std::string GetPhoneNumber() const;
-		std::string GetDarkestSecret() const;
+		std::string GetDarkestSecret() const;*/
 };
 //Como definir el contructor?
 //Como definir los metodos?

@@ -1,44 +1,75 @@
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
-#include <iostream>
+#include <cctype>
 
-PhoneBook::PhoneBook() : _index(0), _count(0)
-{
-    // Initialize the PhoneBook
+PhoneBook::PhoneBook() : _index(0), _count(0){}
+
+PhoneBook::~PhoneBook() {
+    std::cout << "PhoneBook destroyed. Goodbye!\n";
 }
 
-PhoneBook::~PhoneBook() 
-{
-	std::cout << "PhoneBook has been destroyed💥" << std::endl;
-    // Cleanup if needed
-}
-/*
-int PhoneBook::GetIndex() const 
-{
-    return _index;
-}
+void PhoneBook::AddContact() {
+    std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
-Contact PhoneBook::GetContacts(int index) const
-{
-    if (index >= 0 && index < 8)
-        return _contacts[index];
-	std::cout << "Invalid index" << std::endl;
-	return NULL;
-}*/
+    std::cout << "Enter First Name: ";
+    std::getline(std::cin, firstName);
+    std::cout << "Enter Last Name: ";
+    std::getline(std::cin, lastName);
+    std::cout << "Enter Nickname: ";
+    std::getline(std::cin, nickName);
+    std::cout << "Enter Phone Number: ";
+    std::getline(std::cin, phoneNumber);
+    std::cout << "Enter Darkest Secret: ";
+    std::getline(std::cin, darkestSecret);
 
-void PhoneBook::AddContact(const Contact& contact) 
-{
-    _contacts[_index] = contact;
-    _index = (_index + 1) % 8; // Wrap around if full
-	if (_count < 8)
+    _contacts[_index].SetContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+
+    std::cout << "Contact added successfully!\n";
+    _index = (_index + 1) % 8; // Wrap around if the phone book is full
+	if(_count < 8)
 		_count++;
 }
 
-void PhoneBook::DisplayContacts() const 
+void PhoneBook::SearchContacts() const
 {
-    for (int i = 0; i < _count; ++i)
+    std::cout << std::setw(10) << "Index" << "|" << std::setw(10) << "First Name" << "|"
+              << std::setw(10) << "Last Name" << "|" << std::setw(10) << "Nickname" << "\n";
+    std::cout << "---------------------------------------------\n";
+
+    for (int i = 0; i < _count; ++i) {
+        _contacts[i].DisplayShort(i);
+    }
+
+    std::cout << "\nEnter the index of the contact to view details: ";
+	std::string  str;
+	int index;
+	int i = 0;
+    std::cin >> str;
+    std::cin.ignore(); // Clear newline character from input buffer
+	while(str[i] != '\0')
 	{
-        std::cout << "Contact " << i << ": " << _contacts[i].GetFirstName() << " "
-                  << _contacts[i].GetLastName() << "\n";
+		if(std::isdigit(str[i]) != false)
+			i++;
+		else
+		{
+			std::cout << "just numbers from 1 to 8 allowed\n" << std::endl;
+			return ;
+		}
+	}
+	if (i > 1)
+	{
+		std::cout << "just numbers from 1 to 8 allowed\n" << std::endl;
+		return ;
+	}
+	else 
+	{
+		index = std::stoi(str);
+		if(index >= 1 && index <= 8)
+       		 _contacts[index].DisplayFull();
+		 else
+		 {
+			 std::cout << "Invalid index. Just numbers from 1 to 8\n";
+			 return ;
+		 }
+
     }
 }

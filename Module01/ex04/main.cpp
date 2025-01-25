@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream> // For file streams
+#include <cstring> //para el strlen
 
 int main(int argc, char *argv[]) 
 {
@@ -26,22 +27,25 @@ int main(int argc, char *argv[])
     std::string s1 = argv[2];
     std::string s2 = argv[3]; //lo declaro para que no problemas que el doble puntero por ahi.
 
-    // Read from source and write to destination
+    int lineNumber = 0; // para poner el \n despues de una linea y no al final del archivo
     std::string line;
+    std::string newLine;
     while (std::getline(inputFile, line))  // Read one line at a time
     {
-        size_t index;
-        int i = 0;
-        if((index = line.find(s1)) != std::string::npos)
+        if (lineNumber != 0)
+            outputFile << "\n";
+        lineNumber++;
+        newLine = line;
+        size_t index = 0;
+        while((index = newLine.find(s1, index)) != std::string::npos)
         {
-            while(line[index] != '\0')
-            {
-                line[index] = s2[i]; // hay que controlar si s2 se ha copiado completamente porque si s2 es mas larga que s1 se lia
-                index++;
-                i++;
-            }
+            std::string startLine = newLine.substr(0, index);
+            std::string endLine = newLine.substr(index + std::strlen(s1.c_str()), std::strlen(newLine.c_str()) - index + std::strlen(s1.c_str()));
+            newLine = startLine + s2 + endLine;
+            index += std::strlen(s2.c_str());
+  //          std::cout << "index: " << index << " diff: " << index + std::strlen(s1.c_str()) << " start line: -" << startLine << "- end line: -" << endLine << std::endl;
         }
-        outputFile << line << "\n";         // Write each line to the destination file
+        outputFile << newLine;         // Write each line to the destination file
     }  
 
     // Close the files

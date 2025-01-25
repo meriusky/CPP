@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
             std::string endLine = newLine.substr(index + std::strlen(s1.c_str()), std::strlen(newLine.c_str()) - index + std::strlen(s1.c_str()));
             newLine = startLine + s2 + endLine;
             index += std::strlen(s2.c_str());
-  //          std::cout << "index: " << index << " diff: " << index + std::strlen(s1.c_str()) << " start line: -" << startLine << "- end line: -" << endLine << std::endl;
+  //           std::cout << "index: " << index << " diff: " << index + std::strlen(s1.c_str()) << " start line: -" << startLine << "- end line: -" << endLine << std::endl;
         }
         outputFile << newLine;         // Write each line to the destination file
     }  

@@ -1,6 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 09:58:42 by mehernan          #+#    #+#             */
+/*   Updated: 2025/01/27 16:00:43 by mehernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 #include <cctype>
-
+#include <string>
+#include <stdexcept>
+#include <sstream>
+//Que es std::cin?
+//std::cin (character input)nos permite acceptar datos a traves del teclado.
+//>> es el operador extractor, extrae los datos de std::cin y los guarda en una variable
 PhoneBook::PhoneBook() : _index(0), _count(0){}
 
 PhoneBook::~PhoneBook() {
@@ -28,32 +45,34 @@ void PhoneBook::AddContact() {
 	if(_count < 8)
 		_count++;
 }
-
 void PhoneBook::SearchContacts() const
 {
     std::cout << std::setw(10) << "Index" << "|" << std::setw(10) << "First Name" << "|"
               << std::setw(10) << "Last Name" << "|" << std::setw(10) << "Nickname" << "\n";
     std::cout << "---------------------------------------------\n";
 
-    for (int i = 0; i < _count; ++i) {
+    for (int i = 0; i < _count; ++i)
+	{
         _contacts[i].DisplayShort(i);
     }
 
     std::cout << "\nEnter the index of the contact to view details: ";
-	std::string  str;
+	std::string str;
 	int index;
-	int i = 0;
+	int i = 1;
     std::cin >> str;
+	const char* cStr = str.c_str();
+//	str.c_str();
     std::cin.ignore(); // Clear newline character from input buffer
 	while(str[i] != '\0')
 	{
-		if(std::isdigit(str[i]) != false)
-			i++;
-		else
-		{
-			std::cout << "just numbers from 1 to 8 allowed\n" << std::endl;
-			return ;
-		}
+			if(std::isdigit(str[i]) != false)
+					i++;
+			else
+			{
+					std::cout << "just numbers from 1 to 8 allowed\n" << std::endl;
+					return ;
+			}
 	}
 	if (i > 1)
 	{
@@ -62,12 +81,13 @@ void PhoneBook::SearchContacts() const
 	}
 	else 
 	{
-		index = std::stoi(str);
-		if(index >= 1 && index <= 8)
+		index = std::atoi(cStr);
+		index--;
+		if(index >= 0 && index <= 7)
        		 _contacts[index].DisplayFull();
 		 else
 		 {
-			 std::cout << "Invalid index. Just numbers from 1 to 8\n";
+				 std::cout << "Invalid index. Just numbers from 1 to 8\n";
 			 return ;
 		 }
 

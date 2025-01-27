@@ -5,7 +5,7 @@ CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 # Target es el nom de l'executable
 TARGET = PhoneBook
 
-SRC = Main.cpp Contact.cpp PhoneBook.cpp
+SRC = main.cpp Contact.cpp PhoneBook.cpp
 
 all: $(TARGET)
 

@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 09:57:30 by mehernan          #+#    #+#             */
+/*   Updated: 2025/01/27 11:13:27 by mehernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include <iostream>  //Llibreria per  std::cout, std::cin
 #include <cctype>    //Llibreria per std::toupper
+//std::cout nos permite mostrar texto en pantalla
 
 void UpperCase(char* str)
 {
@@ -22,7 +34,7 @@ int main(int argc, char* argv[])
 	while(argv[i] != NULL)
 	{
 		UpperCase(argv[i]);
-		std::cout  << argv[i];
+		std::cout << argv[i];
 		i++;
 	}
 	std::cout << std::endl;

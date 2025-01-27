@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:58:42 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/27 16:00:43 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:05:19 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void PhoneBook::SearchContacts() const
 	int i = 1;
     std::cin >> str;
 	const char* cStr = str.c_str();
-//	str.c_str();
     std::cin.ignore(); // Clear newline character from input buffer
 	while(str[i] != '\0')
 	{

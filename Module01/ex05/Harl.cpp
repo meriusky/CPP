@@ -1,7 +1,7 @@
 #include "Harl.hpp"
 
 Harl::Harl()
-{
+{//Each _ptr[] corresponds directly to a _levels[] value.
     _ptr[0] = &Harl::debug;
     _ptr[1] = &Harl::info;
     _ptr[2] = &Harl::warning;
@@ -14,7 +14,7 @@ Harl::Harl()
 
 }
 Harl::~Harl() {}
-
+//Each function prints tehir complain message with a heather(debug, info, warning, error)
 void Harl::debug(void)
 {
     std::cout << "[ DEBUG ]" << std::endl;
@@ -43,13 +43,19 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)//We initialice the i = 0, while i < 4 do i++
     {
-        if (_levels[i].compare(level) == 0)
+        if (_levels[i].compare(level) == 0)//If the input matches de level
         {
-            (this->*_ptr[i])();
+            (this->*_ptr[i])();//accses to the function pointer //*ex
             return;
         }
     }
+	//If no match is found, print an error message
     std::cout << level << " level like that doesn't exist you m...........!" << std::endl;
 }
+/*ex:	What Happens if level = "INFO"?
+
+   1. The loop finds that _levels[1] == "INFO".
+   2.  _ptr[1] holds &Harl::info, which is the memory address of info().
+   3.  (this->*_ptr[1])(); calls the info() function.*/

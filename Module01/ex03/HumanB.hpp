@@ -13,7 +13,7 @@ class HumanB
         HumanB(std::string);
         ~HumanB();
         void attack();
-        void setWeapon(Weapon);
+        void setWeapon(Weapon&);
 
 };
 #endif

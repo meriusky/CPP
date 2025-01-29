@@ -4,6 +4,7 @@ HumanA::HumanA(std::string name, Weapon weapon)
 {
     _name = name;
     _weapon = weapon;
+	std::cout << "constructor Human A" << std::endl;
 }
 
 HumanA::~HumanA()

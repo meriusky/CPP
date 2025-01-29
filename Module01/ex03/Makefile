@@ -1,8 +1,7 @@
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-# Target es el nom de l'executable
-TARGET = zombie
+TARGET = unnecessary_violence
 
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 

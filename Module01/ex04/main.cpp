@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream> // For file streams
-#include <cstring> //para el strlen
+#include <cstring> //For strlen
 
 int main(int argc, char *argv[]) 
 {
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     std::ifstream inputFile(argv[1], std::ios::in);  // Open the source file for reading
-    std::ofstream outputFile(std::string(argv[1])+".replace", std::ios::out);  // Open the destination file for writing
+    std::ofstream outputFile((std::string(argv[1])+".replace").c_str(), std::ios::out);  // Open the destination file for writing
 
     if (!inputFile) 
     {
@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     }
 
     std::string s1 = argv[2];
-    std::string s2 = argv[3]; //lo declaro para que no problemas que el doble puntero por ahi.
+    std::string s2 = argv[3]; //I declare it for not having problems with the double pointer
 
-    int lineNumber = 0; // para poner el \n despues de una linea y no al final del archivo
+    int lineNumber = 0; // To put the \n after the line and not at the end of the file
     std::string line;
     std::string newLine;
     while (std::getline(inputFile, line))  // Read one line at a time
@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
             std::string endLine = newLine.substr(index + std::strlen(s1.c_str()), std::strlen(newLine.c_str()) - index + std::strlen(s1.c_str()));
             newLine = startLine + s2 + endLine;
             index += std::strlen(s2.c_str());
-  //           std::cout << "index: " << index << " diff: " << index + std::strlen(s1.c_str()) << " start line: -" << startLine << "- end line: -" << endLine << std::endl;
         }
         outputFile << newLine;         // Write each line to the destination file
     }  
@@ -55,5 +54,3 @@ int main(int argc, char *argv[])
     std::cout << "File copied successfully!" << std::endl;
     return 0;
 }
-//Vigilar que pasa si hay dos s1 en la misma linea, es decir la misma palabra a sustituir dos veces
-//Y un error asqueroso de que no se puede abrir el file en vscode

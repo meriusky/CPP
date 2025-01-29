@@ -1,7 +1,7 @@
 #include "Zombie.hpp"
 
 Zombie* Zombie::newZombie(std::string name)
-{//malloc version c++, estamos guardando memoria, creanod un zombie nuevo🧟
+{//Like malloc but in c++, we're saving memory and creating a new zombie🧟
 		Zombie *z = new Zombie(name);
 		return z;
 }

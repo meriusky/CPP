@@ -2,8 +2,8 @@
 int main()
 {
     std::string str = "HI THIS IS BRAIN";
-    std::string* stringPTR = &str;// Ptr: Guarda l'adreça de la variable en questio
-    std::string& stringREF = str; //Referencia: es com posar una altre nom a la variable, NO pot ser NULL i la pots modificar
+    std::string* stringPTR = &str;//*1
+    std::string& stringREF = str; //*2
 
     std::cout << "Memory address str: " << &str << std::endl;
     std::cout << "Memory address stringPTR : " << stringPTR << std::endl;
@@ -14,3 +14,6 @@ int main()
     std::cout << "Value of stringREF : " << stringREF << std::endl;
     return(0);
 }
+//1: The pointer is saving the memory address in the variable stringPTR
+//2: The reference is like putting another name to the variable, it can't be NULL and
+// : and you can modify it

@@ -2,15 +2,15 @@
 
 int main()
 {
-	Zombie Josep(std::string("Josep"));
-	Zombie Toallas(std::string("Toallas"));
-	Zombie Faixa(std::string("Faixa"));
-	Zombie* MissFortune;
+	Zombie Valerio(std::string("Valerio"));
+	Zombie Paula(std::string("Paula"));
+	Zombie Oliver(std::string("Oliver"));
+	Zombie* Meritxell;
 	
-	Josep.announce();
-	MissFortune = Toallas.newZombie(std::string("MissFortune"));
-	MissFortune->announce();
-	delete MissFortune;
-	Faixa.randomChump(std::string("Patatin"));
+	Valerio.announce();
+	Meritxell = Paula.newZombie(std::string("Meritxell"));
+	Meritxell->announce();
+	delete Meritxell;
+	Oliver.randomChump(std::string("Oliver"));
 	return(0);
 }

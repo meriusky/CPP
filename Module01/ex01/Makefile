@@ -2,7 +2,7 @@ CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 # Target es el nom de l'executable
-TARGET = zombie
+TARGET = moar_brainz
 
 SRC = main.cpp Zombie.cpp zombieHorde.cpp
 

@@ -1,20 +1,18 @@
 #include "Fixed.hpp"
 
-// Default Constructor: Initializes _value to 0
-Fixed::Fixed() : _number(0) 
+
+Fixed::Fixed() : _number(0) // Default Constructor: Initializes _value to 0
 {
     std::cout << "Default constructor called\n";
 }
 
-// Copy Constructor: Copies the value from another Fixed instance
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed(const Fixed &other)// Copy Constructor: Copies the value from another Fixed instance
 {
     std::cout << "Copy constructor called\n";
     *this = other;  // Uses the assignment operator
 }
 
-// Copy Assignment Operator: Handles deep copy
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed &Fixed::operator=(const Fixed &other)// Copy Assignment Operator: Handles deep copy
 {
     std::cout << "Copy assignment operator called\n";
     if (this != &other)// Check for self-assignment
@@ -22,21 +20,18 @@ Fixed &Fixed::operator=(const Fixed &other)
     return *this;
 }
 
-// Destructor
-Fixed::~Fixed() 
+Fixed::~Fixed() // Destructor
 {
     std::cout << "Destructor called\n";
 }
 
-// Getter: Returns the raw integer value
-int Fixed::getRawBits(void) const 
+int Fixed::getRawBits(void) const // Getter: Returns the raw integer value
 {
     std::cout << "getRawBits member function called\n";
     return this->_number;
 }
 
-// Setter: Sets the raw integer value
-void Fixed::setRawBits(int const raw) 
+void Fixed::setRawBits(int const raw) // Setter: Sets the raw integer value
 {
     std::cout << "setRawBits member function called\n";
     this->_number = raw;

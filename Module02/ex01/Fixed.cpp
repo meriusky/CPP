@@ -33,6 +33,11 @@ Fixed::Fixed(const int intValue)
 {
     std::cout << "Int constructor called" << std::endl;
     _value = intValue << _fractionalBits; // Shift left by 8 bits (multiply by 256)
+// lo multiplicamos para que el numero sea mas exacto. Cuando queremos hacer operaciones
+// con ints o flats como no son numeros exactos los multiplicamos a ambos por 256 hacemos
+// la operacio y luego los volvemos a combertir en numeros de 8, es decir lo divides por 256.
+// Ya que asi el resultado sera mas exacto. Todo esto se esta haciendo en automatico escribiendo
+// << _fractionalBits
 }
 
 //Constructor from float
@@ -45,7 +50,7 @@ Fixed::Fixed(const float floatValue)
 //Get raw value
 int Fixed::getRawBits(void) const 
 {
-    return _value;
+    return  _value;
 }
 
 //Set raw value
@@ -69,6 +74,6 @@ int Fixed::toInt(void) const
 //Overload << operator
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed) 
 {
-    out << fixed.toFloat();
-    return out;
+    out << fixed.toFloat();//The subject requires it
+	return out;
 }

@@ -36,6 +36,7 @@ void Fixed::setRawBits(int const raw) // Setter: Sets the raw integer value
     std::cout << "setRawBits member function called\n";
     this->_number = raw;
 }
+
 //*1 Why am I usig this?(explained with the actual main)
 //"this" is b, other is a. When we write "*this = other" we are calling the
 //operatior. Yes it is what it is. It might sound crazy but thats what is happening.

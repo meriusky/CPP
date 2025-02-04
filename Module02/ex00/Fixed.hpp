@@ -18,7 +18,6 @@ public:
     int getRawBits(void) const; //Getter for the raw fixed-point value
     void setRawBits(int const raw); //Setter for the raw fixed-point value
 };
-
 #endif
 
 //Orthodox Canonical Form: 

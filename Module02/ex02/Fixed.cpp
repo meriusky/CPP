@@ -145,20 +145,28 @@ Fixed Fixed::operator--(int)
 //Min & Max Functions
 Fixed &Fixed::min(Fixed &a, Fixed &b) 
 {
-    return (a < b) ? a : b;
+    return (a < b) ? a : b;//*1
 }
 
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b) 
 {
-    return (a < b) ? a : b;
+    return (a < b) ? a : b;//*1
 }
 
 Fixed &Fixed::max(Fixed &a, Fixed &b) 
 {
-    return (a > b) ? a : b;
+    return (a > b) ? a : b;//*1
 }
 
 const Fixed &Fixed::max(const Fixed &a, const Fixed &b) 
 {
-    return (a > b) ? a : b;
+    return (a > b) ? a : b;//*1
 }
+/* The same as writing these
+{
+    if (a < b)
+        return a;
+    else
+        return b;
+}*/
+

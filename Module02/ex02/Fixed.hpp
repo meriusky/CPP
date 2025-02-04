@@ -11,17 +11,12 @@ class Fixed
 	    static const int _fractionalBits = 8; // Number of fractional bits (always 8)
 
 	public:
-	    // Orthodox Canonical Form
 	    Fixed();                          // Default constructor
 	    Fixed(const Fixed &other);         // Copy constructor
 	    Fixed &operator=(const Fixed &other); // Copy assignment operator
 	    ~Fixed();                         // Destructor
-
-	    // New Constructors
 	    Fixed(const int intValue);         // Constructor from int
 	    Fixed(const float floatValue);     // Constructor from float
-
-	    // Member functions
 	    int getRawBits(void) const;        // Getter for raw value
 	    void setRawBits(int const raw);    // Setter for raw value
 	    float toFloat(void) const;         // Converts to float
@@ -31,7 +26,7 @@ class Fixed
 	    bool operator>(const Fixed &other) const;
 	    bool operator<(const Fixed &other) const;
 	    bool operator>=(const Fixed &other) const;
- 	   bool operator<=(const Fixed &other) const;
+		bool operator<=(const Fixed &other) const;
 	    bool operator==(const Fixed &other) const;
 	    bool operator!=(const Fixed &other) const;
 
@@ -52,9 +47,8 @@ class Fixed
     	static const Fixed &min(const Fixed &a, const Fixed &b);
 	    static Fixed &max(Fixed &a, Fixed &b);
     	static const Fixed &max(const Fixed &a, const Fixed &b);
-
-	    // Overloaded << operator for printing
- 	   friend std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 };
-#endif
+	 // Overloaded << operator for printing
+ 	 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
+#endif

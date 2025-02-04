@@ -7,7 +7,7 @@ Fixed::Fixed() : _number(0) // Default Constructor: Initializes _value to 0
 }
 
 Fixed::Fixed(const Fixed &other)// Copy Constructor: Copies the value from another Fixed instance
-{
+{//*1 this
     std::cout << "Copy constructor called\n";
     *this = other;  // Uses the assignment operator
 }
@@ -36,3 +36,5 @@ void Fixed::setRawBits(int const raw) // Setter: Sets the raw integer value
     std::cout << "setRawBits member function called\n";
     this->_number = raw;
 }
+//*1 Why am I usig this?
+//With this we are takeing

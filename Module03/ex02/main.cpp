@@ -3,7 +3,8 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-int main() {
+int main()
+{
     FragTrap frag("Fraggy");
     
     frag.attack("Enemy");

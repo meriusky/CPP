@@ -1,7 +1,8 @@
 #include "ScavTrap.hpp"
 
 // Constructor
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
+{
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
@@ -9,27 +10,30 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 }
 
 // Copy Constructor
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
+{
     *this = other;
     std::cout << "ScavTrap " << _name << " has been copied!" << std::endl;
 }
 
 // Copy Assignment Operator
-ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
-    if (this != &other) {
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+    if (this != &other) 
         ClapTrap::operator=(other);
-    }
     return *this;
 }
 
-// Destructor
-ScavTrap::~ScavTrap() {
+ScavTrap::~ScavTrap()
+{
     std::cout << "ScavTrap " << _name << " has been destroyed!" << std::endl;
 }
 
-// Attack function (overrides ClapTrap's attack)
-void ScavTrap::attack(const std::string& target) {
-    if (_hitPoints <= 0 || _energyPoints <= 0) {
+//attack function
+void ScavTrap::attack(const std::string& target)
+{
+    if (_hitPoints <= 0 || _energyPoints <= 0)
+	{
         std::cout << "ScavTrap " << _name << " has no energy or hit points left to attack!" << std::endl;
         return;
     }
@@ -39,7 +43,8 @@ void ScavTrap::attack(const std::string& target) {
 }
 
 // Guard Gate mode function
-void ScavTrap::guardGate() {
+void ScavTrap::guardGate()
+{
     std::cout << "ScavTrap " << _name << " is now in Gate Keeper mode!" << std::endl;
 }
 

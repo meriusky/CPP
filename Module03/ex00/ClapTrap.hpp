@@ -8,7 +8,7 @@ class ClapTrap
 {
 	private:
 	    std::string _name;
-    	int _hitPoints;
+    	int _hitPoints; //health of the ClapTrap
    		int _energyPoints;
     	int _attackDamage;
 

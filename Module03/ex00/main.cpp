@@ -9,7 +9,7 @@ int main()
     claptrap.beRepaired(3);
     claptrap.attack("Enemy2");
     claptrap.takeDamage(10);
-    claptrap.beRepaired(5);  // Should fail since HP is 0
+    claptrap.beRepaired(5);  // Should fail since hit pointd (health) is 0
 
     return 0;
 }

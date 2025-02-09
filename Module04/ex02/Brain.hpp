@@ -2,11 +2,12 @@
 #define BRAIN_HPP
 
 #include <iostream>
+#include <string>
 
 class Brain
 {
 	private:
-	    std::string ideas[100]; // Array of 100 strings
+ 	   std::string ideas[100];
 
 	public:
 	    Brain();

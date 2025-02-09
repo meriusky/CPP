@@ -4,9 +4,9 @@
 int main() 
 {
     const int animalCount = 4;
-    Animal* animals[animalCount];
+    AAnimal* animals[animalCount];
 
-    // Creating animals
+    // Creating animals: first half Dogs, second half Cats
     for (int i = 0; i < animalCount / 2; i++)
         animals[i] = new Dog();
     for (int i = animalCount / 2; i < animalCount; i++)
@@ -22,12 +22,6 @@ int main()
 
     return 0;
 }
-/*
-int main()
-{
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	delete j;//should not create a leak
-	delete i;
-	return 0;
-}*/
+// revisar este ejercicio
+// Question: What does it mean that class a should not be instantiable?
+// Answer: it means that you should not be able to create an object of AAnimal. This is because AAnimal is meant to serve as a base class for Cat and Dog, but it does not represent a specific animal itself.

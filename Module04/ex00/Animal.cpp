@@ -32,4 +32,27 @@ std::string Animal::getType() const
 {
     return type;
 }
-/*How is the operator working?*/
+/*How is the operator working?
+
+ When is operator= used?
+ The copy assignment operator is called when an existing object is assigned 
+ another object.
+Exemple:     Animal a1;
+             Animal a2;
+             a2 = a1; // Calls operator=
+
+This is a copy assignment operator. It allows one Animal object to be 
+assigned to another using =    👇
+	➡️	Animal& Animal::operator=(const Animal& other) ⬅️
+
+		➡️  if (this != &other) ⬅️
+this: is a pointer to the current object
+&other: is the adress of the object being assigned
+this = &other:  the object is being assigned to itself, so we skip the assignment 
+                to avoid unnecessary work.
+
+      ➡️  this->type = other.type;  ⬅️
+Copies the value of other.type into this->type.
+	
+ *
+*/

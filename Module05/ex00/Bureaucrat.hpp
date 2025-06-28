@@ -36,7 +36,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);//📌
   //This line declares an overload of the << operator for the 
   // Bureaucrat class. It allows you to use std::cout << b; 
   // (where b is a Bureaucrat object), and have it print something 
-  // meaningful.
+  // meaningful. Look at Bureaucrat.cpp to understand.
 
 //std::ostream
   //This function returns a reference to an ostream (like std::cout), 

@@ -5,13 +5,13 @@
 #include <string>
 #include "Bureaucrat.hpp"
 
-class Bureacrat;
+class Bureaucrat;
 
 class Form
 {
     private:
         const std::string name;
-        bool sign;
+        bool    sign;
         const int gradeToSign;
         const int gradeToExecute;
 
@@ -27,18 +27,19 @@ class Form
         int getGradeToSign() const;
         int getGradeToExecute() const;
 
-        void beSigned(const Bureacrat& b);
-
+        void beSigned(const Bureaucrat& b);
+//Subject sais "If grade is too low or hight, trow a Form::GradeTooLowException" if it has to be like this,
+// GradeTooLowException has to be a class in Form🫡
         class GradeTooHighException : public std::exception 
         {
-            const char* what() const trhow();
+            const char* what() const throw();
         };
         class GradeTooLowException : public std::exception 
         {
-            const char* what() const trhow();
+            const char* what() const throw();
         };
     
-}
+};
 //operator overload 😉
     std::ostream& operator<<(std::ostream& os, const Form& f);
 

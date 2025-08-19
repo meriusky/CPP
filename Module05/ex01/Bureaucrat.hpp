@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept> //To signal and handle runtime errors in a structured way
+#include "Form.hpp"
 
 class Bureaucrat 
 {
@@ -19,6 +20,7 @@ class Bureaucrat
 
         void incrementGrade(); // Raise grade (i.e., lower number)
         void decrementGrade(); // Lower grade (i.e., higher number)
+        void signForm(Form& form); // For signing
 
         class GradeTooHighException : public std::exception
         {
@@ -29,6 +31,7 @@ class Bureaucrat
         {
             const char* what() const throw();
         };
+
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);//📌

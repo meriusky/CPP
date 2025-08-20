@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept> //To signal and handle runtime errors in a structured way
 #include "Form.hpp"
+class Form;   // forward declaration
 
 class Bureaucrat 
 {

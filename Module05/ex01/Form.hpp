@@ -11,7 +11,7 @@ class Form
 {
     private:
         const std::string name;
-        bool    sign;
+        bool    isSigned;
         const int gradeToSign;
         const int gradeToExecute;
 
@@ -23,7 +23,7 @@ class Form
 
         //Getters (required on subject)
         std::string getName() const;
-        bool getSign() const;
+        bool getIsSigned() const;
         int getGradeToSign() const;
         int getGradeToExecute() const;
 

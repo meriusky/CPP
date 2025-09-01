@@ -1,7 +1,7 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-//constructor👇    👇values needed, 👇that we pass in 👇the main, they DON'T COME FROM THE CLASS, they're temporary, they only exsist in the constructor.         
+//constructor👇    👇values needed, 👇that we pass in the main, they DON'T COME FROM THE CLASS, they're temporary, they only exsist in the constructor.         
 Form::Form(const std::string& n, int signGrade, int execGrade)
     : name(n), isSigned(false), gradeToSign(signGrade), gradeToExecute(execGrade) 
 {
@@ -17,8 +17,7 @@ Form::Form(const std::string& n, int signGrade, int execGrade)
 //Copy Constructor👇: allows to creat a new Form from an existing one
 Form::Form(const Form& other)
     : name(other.name), isSigned(other.isSigned),
-      gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) 
-{}
+      gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
 //📍Why do I need one?
 //C++ will generate a default one for you, but since the class has conts members
 //(name, gradeToSign, gradeToExecute), the default copy can be tricky. For having
@@ -41,12 +40,15 @@ Form::~Form()
     std::cout << "Form " << name << " destroyed" << std::endl;
 }
 
+//This are the getters:they just give read access to the private attributes of the class.They don't "put the information in the variable" but rather give us a copy of the current value stored in the private member.
 std::string Form::getName() const { return name; }
 bool Form::getIsSigned() const { return isSigned; }
 int Form::getGradeToSign() const { return gradeToSign; }
 int Form::getGradeToExecute() const { return gradeToExecute; }
 
-void Form::beSigned(const Bureaucrat& b) {
+//What is the B (b.getGrade): Is just the Bureaucrat, it can be B or X, whatever. Is refering to the one in the main.
+void Form::beSigned(const Bureaucrat& b) 
+{
     if (b.getGrade() > gradeToSign)
         throw GradeTooLowException();
     isSigned = true;
@@ -61,6 +63,7 @@ const char* Form::GradeTooLowException::what() const throw()
 {
     return "Form: grade is too low!";
 }
+
 
 std::ostream& operator<<(std::ostream& os, const Form& f) 
 {

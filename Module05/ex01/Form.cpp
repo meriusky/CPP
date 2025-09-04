@@ -64,7 +64,7 @@ const char* Form::GradeTooLowException::what() const throw()
     return "Form: grade is too low!";
 }
 
-
+//📍Remember os: os is the stream we’re printing to. It could be std::cout, std::cerr, or even a file stream. We use it instead of hardcoding std::cout so the operator is more flexible.
 std::ostream& operator<<(std::ostream& os, const Form& f) 
 {
     os << "Form \"" << f.getName() << "\", signed: " 
@@ -73,3 +73,16 @@ std::ostream& operator<<(std::ostream& os, const Form& f)
        << ", grade to execute: " << f.getGradeToExecute();
     return os;
 }
+//Operator overload👆:  Why is it useful? 
+//Without operator overloading, printing a class would look clunky.
+//Without😓:
+//Form f("Passport", 100, 50);
+//std::cout << "Form: " << f.getName()
+  //      << ", signed: " << (f.getIsSigned() ? "yes" : "no")
+    //    << ", grade to sign: " << f.getGradeToSign()
+      //  << ", grade to execute: " << f.getGradeToExecute()
+        //<< std::endl;
+//With the operator overload✅:
+//Form f("Passport", 100, 50);
+//std::cout << f << std::endl;
+

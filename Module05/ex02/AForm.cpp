@@ -12,21 +12,24 @@ AForm::AForm(const std::string& n, int signGrade, int execGrade)
     std::cout << "AForm " << name << " created" << std::endl;
 }
 
-// Copy constructor
+// Copy constructor: needed to safely make duplicates of objects. It's not for "not losing" the original but to make sure the new one is correctly created
 AForm::AForm(const AForm& other)
     : name(other.name), isSigned(other.isSigned),
       gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
 
 // Assignment operator
-AForm& AForm::operator=(const AForm& other) {
-    if (this != &other) {
+AForm& AForm::operator=(const AForm& other) 
+{
+    if (this != &other) 
+	{
         this->isSigned = other.isSigned;
     }
     return *this;
 }
 
 // Destructor
-AForm::~AForm() {
+AForm::~AForm() 
+{
     std::cout << "AForm " << name << " destroyed" << std::endl;
 }
 
@@ -57,7 +60,9 @@ const char* AForm::FormNotSignedException::what() const throw() {
 }
 
 // Operator overload
-std::ostream& operator<<(std::ostream& os, const AForm& f) {
+// //📍Remember os: os is the stream we’re printing to. It could be std::cout, std::cerr, or even a file stream. We use it instead of hardcoding std::cout so the operator is more flexible.
+std::ostream& operator<<(std::ostream& os, const AForm& f) 
+{
     os << "Form \"" << f.getName() << "\", signed: "
        << (f.getIsSigned() ? "yes" : "no")
        << ", grade to sign: " << f.getGradeToSign()

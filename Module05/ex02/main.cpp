@@ -4,8 +4,10 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-int main() {
-    try {
+int main() 
+{
+    try 
+	{
         Bureaucrat alice("Alice", 1);    // Top rank bureaucrat
         Bureaucrat bob("Bob", 140);      // Lower rank bureaucrat
         Bureaucrat charlie("Charlie", 50);
@@ -27,7 +29,8 @@ int main() {
         charlie.executeForm(robot); // Should succeed/fail randomly
         alice.executeForm(pardon);  // Should succeed
 
-    } catch (std::exception& e) {
+    } catch (std::exception& e) 
+	{
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 

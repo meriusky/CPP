@@ -2,7 +2,6 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-// Constructor
 PresidentialPardonForm::PresidentialPardonForm(const std::string& t)
     : AForm("PresidentialPardonForm", 25, 5), target(t) {}
 
@@ -11,19 +10,21 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
     : AForm(other), target(other.target) {}
 
 // Assignment operator
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
-    if (this != &other) {
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) 
+{
+    if (this != &other) 
+	{
         AForm::operator=(other);
         target = other.target;
     }
     return *this;
 }
 
-// Destructor
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 // Execute
-void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+void PresidentialPardonForm::execute(const Bureaucrat& executor) const 
+{
     // Check preconditions
     if (!getIsSigned())
         throw FormNotSignedException();

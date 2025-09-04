@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 
-// Constructor
 RobotomyRequestForm::RobotomyRequestForm(const std::string& t)
     : AForm("RobotomyRequestForm", 72, 45), target(t) {
     std::srand(std::time(NULL)); // Seed random generator once
@@ -15,19 +14,21 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
     : AForm(other), target(other.target) {}
 
 // Assignment operator
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
-    if (this != &other) {
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) 
+{
+    if (this != &other) 
+	{
         AForm::operator=(other);
         target = other.target;
     }
     return *this;
 }
 
-// Destructor
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 // Execute
-void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
+void RobotomyRequestForm::execute(const Bureaucrat& executor) const 
+{
     // Check preconditions
     if (!getIsSigned())
         throw FormNotSignedException();

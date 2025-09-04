@@ -53,12 +53,12 @@ int main()
     // std::cout << "before" << bob << std::endl;
         bob.incrementGrade();
         alice.incrementGrade();
-        std::cout << "\n ⬆️increment Grade⬆️" << std::endl;
+        std::cout << "\n ⬆️ increment Grade⬆️" << std::endl;
         std::cout << bob << std::endl;
         std::cout << alice << std::endl;
         bob.decrementGrade();
         alice.decrementGrade();
-        std::cout << "\n ⬇️decrement Grade⬇️" << std::endl;
+        std::cout << "\n ⬇️ decrement Grade⬇️" << std::endl;
         std::cout << bob << std::endl;
         std::cout << alice << std::endl;
     }

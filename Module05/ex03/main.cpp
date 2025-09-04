@@ -1,12 +1,14 @@
 #include "Intern.hpp"
 #include "Bureaucrat.hpp"
 
-int main() {
+int main() 
+{
     Intern someRandomIntern;
     AForm* form;
 
     form = someRandomIntern.makeForm("robotomy request", "Bender");
-    if (form) {
+    if (form) 
+	{
         Bureaucrat john("John", 40);
         john.signForm(*form);
         john.executeForm(*form);
@@ -14,7 +16,8 @@ int main() {
     }
 
     form = someRandomIntern.makeForm("shrubbery creation", "Home");
-    if (form) {
+    if (form) 
+	{
         Bureaucrat mike("Mike", 140);
         mike.signForm(*form);
         mike.executeForm(*form);

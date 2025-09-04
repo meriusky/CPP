@@ -17,7 +17,6 @@ AForm::AForm(const AForm& other)
     : name(other.name), isSigned(other.isSigned),
       gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
 
-// Assignment operator
 AForm& AForm::operator=(const AForm& other) 
 {
     if (this != &other) 
@@ -27,7 +26,6 @@ AForm& AForm::operator=(const AForm& other)
     return *this;
 }
 
-// Destructor
 AForm::~AForm() 
 {
     std::cout << "AForm " << name << " destroyed" << std::endl;

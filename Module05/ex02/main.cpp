@@ -8,9 +8,9 @@ int main()
 {
     try 
 	{
-        Bureaucrat alice("Alice", 1);    // Top rank bureaucrat
-        Bureaucrat bob("Bob", 140);      // Lower rank bureaucrat
-        Bureaucrat charlie("Charlie", 50);
+        Bureaucrat andrei("Andrei", 1);    // Top rank bureaucrat
+        Bureaucrat paula("Paula", 140);      // Lower rank bureaucrat
+        Bureaucrat meritxell("Meritxell", 50);
 
         std::cout << "=== Creating Forms ===" << std::endl;
         ShrubberyCreationForm shrub("home");
@@ -18,18 +18,32 @@ int main()
         PresidentialPardonForm pardon("Ford Prefect");
 
         std::cout << std::endl << "=== Trying to sign forms ===" << std::endl;
-        bob.signForm(shrub);     // Should succeed (sign grade 145)
-        bob.signForm(robot);     // Should fail (needs 72)
-        alice.signForm(robot);   // Should succeed
-        charlie.signForm(pardon);// Should fail (needs 25)
-        alice.signForm(pardon);  // Should succeed
+		andrei.signForm(shrub);   // Should succeed
+	 	andrei.signForm(pardon);  // Should succeed
+	  	andrei.signForm(robot);   // Should succeed
+								  
+		paula.signForm(shrub);   // Should succeed 
+	 	paula.signForm(pardon);  // Should fail
+	  	paula.signForm(robot);   // Should fail
+
+		meritxell.signForm(shrub);   // Should succeed
+	 	meritxell.signForm(pardon);  // Should fail
+	  	meritxell.signForm(robot);   // Should succeed
 
         std::cout << std::endl << "=== Trying to execute forms ===" << std::endl;
-        bob.executeForm(shrub);     // Should succeed (exec grade 137, Bob is 140 → too low!)
-        charlie.executeForm(robot); // Should succeed/fail randomly
-        alice.executeForm(pardon);  // Should succeed
-
-    } catch (std::exception& e) 
+		andrei.executeForm(shrub);//Should succeed
+		andrei.executeForm(robot);//Should succeed
+		andrei.executeForm(pardon); //Should succedd
+									//
+		paula.executeForm(shrub); //Should fail 
+		paula.executeForm(robot); //Should fail
+		paula.executeForm(pardon); //Should fail
+								   //
+		meritxell.executeForm(shrub); //Should succeed
+		meritxell.executeForm(robot); //Should succeed or fail randomly
+		meritxell.executeForm(pardon); //should fail
+    } 
+	catch (std::exception& e) 
 	{
         std::cerr << "Exception: " << e.what() << std::endl;
     }

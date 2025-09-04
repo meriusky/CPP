@@ -5,19 +5,19 @@
 #include <cstdlib>  // for rand()
 #include <ctime>    // for srand()
 
-class RobotomyRequestForm : public AForm {
-private:
-    std::string target;
+class RobotomyRequestForm : public AForm 
+{
+	private:
+ 	   std::string target;
 
-public:
-    // Constructors / Destructor
-    RobotomyRequestForm(const std::string& target);
-    RobotomyRequestForm(const RobotomyRequestForm& other);
-    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
-    ~RobotomyRequestForm();
+	public:
+	    RobotomyRequestForm(const std::string& target);
+	    RobotomyRequestForm(const RobotomyRequestForm& other);
+	    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+	    ~RobotomyRequestForm();
 
-    // Override execute
-    void execute(const Bureaucrat& executor) const;
+	    // Override execute
+	    void execute(const Bureaucrat& executor) const;
 };
 
 #endif

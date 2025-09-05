@@ -1,10 +1,12 @@
 #include "ScalarConverter.hpp"
 
-static bool isCharLiteral(const std::string& s) {
+static bool isCharLiteral(const std::string& s) 
+{
     return s.length() == 3 && s[0] == '\'' && s[2] == '\'';
 }
 
-static bool isIntLiteral(const std::string& s) {
+static bool isIntLiteral(const std::string& s) 
+{
     char* end;
     errno = 0;
     long val = std::strtol(s.c_str(), &end, 10);
@@ -13,7 +15,8 @@ static bool isIntLiteral(const std::string& s) {
     return true;
 }
 
-static bool isFloatLiteral(const std::string& s) {
+static bool isFloatLiteral(const std::string& s) 
+{
     if (s == "-inff" || s == "+inff" || s == "nanf")
         return true;
     if (s[s.size() - 1] != 'f') return false;
@@ -23,7 +26,8 @@ static bool isFloatLiteral(const std::string& s) {
     return (*end == 'f' && *(end + 1) == '\0');
 }
 
-static bool isDoubleLiteral(const std::string& s) {
+static bool isDoubleLiteral(const std::string& s) 
+{
     if (s == "-inf" || s == "+inf" || s == "nan")
         return true;
     char* end;
@@ -32,11 +36,13 @@ static bool isDoubleLiteral(const std::string& s) {
     return (*end == '\0');
 }
 
-void ScalarConverter::convert(const std::string& literal) {
+void ScalarConverter::convert(const std::string& literal) 
+{
     std::cout.setf(std::ios::fixed);
     std::cout.precision(1);
 
-    if (isCharLiteral(literal)) {
+    if (isCharLiteral(literal)) 
+	{
         char c = literal[1];
         std::cout << "char: '" << c << "'" << std::endl;
         std::cout << "int: " << static_cast<int>(c) << std::endl;
@@ -45,7 +51,8 @@ void ScalarConverter::convert(const std::string& literal) {
         return;
     }
 
-    if (isIntLiteral(literal)) {
+    if (isIntLiteral(literal)) 
+	{
         int i = std::atoi(literal.c_str());
         if (i >= 32 && i <= 126)
             std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
@@ -57,7 +64,8 @@ void ScalarConverter::convert(const std::string& literal) {
         return;
     }
 
-    if (isFloatLiteral(literal)) {
+    if (isFloatLiteral(literal)) 
+	{
         float f = std::strtof(literal.c_str(), NULL);
         if (f >= 32 && f <= 126 && literal != "nanf" && literal != "+inff" && literal != "-inff")
             std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
@@ -72,7 +80,8 @@ void ScalarConverter::convert(const std::string& literal) {
         return;
     }
 
-    if (isDoubleLiteral(literal)) {
+    if (isDoubleLiteral(literal)) 
+	{
         double d = std::strtod(literal.c_str(), NULL);
         if (d >= 32 && d <= 126 && literal != "nan" && literal != "+inf" && literal != "-inf")
             std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;

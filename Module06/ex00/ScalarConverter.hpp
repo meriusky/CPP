@@ -10,14 +10,15 @@
 #include <cfloat>
 #include <cmath>
 
-class ScalarConverter {
-private:
-    ScalarConverter(); // not instantiable
-    ScalarConverter(const ScalarConverter&);
-    ScalarConverter& operator=(const ScalarConverter&);
+class ScalarConverter 
+{
+	private:
+    	ScalarConverter(); // not instantiable
+    	ScalarConverter(const ScalarConverter&);
+    	ScalarConverter& operator=(const ScalarConverter&);
 
-public:
-    static void convert(const std::string& literal);
+	public:
+    	static void convert(const std::string& literal);
 };
 
 #endif

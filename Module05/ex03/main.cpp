@@ -3,19 +3,19 @@
 
 int main() 
 {
-    Intern someRandomIntern;
+    Intern randomIntern;
     AForm* form;
 
-    form = someRandomIntern.makeForm("robotomy request", "Bender");
-    if (form) 
+    form = randomIntern.makeForm("robotomy request", "Bender");//is it match return pointer to a new 
+	if (form)											   //RobotomyRequestForm("Bender") if not returnNULL
 	{
-        Bureaucrat john("John", 40);
-        john.signForm(*form);
-        john.executeForm(*form);
-        delete form;
+        Bureaucrat john("John", 40);//create Bureaucrat John
+        john.signForm(*form);//John tries to sign and should succeed
+        john.executeForm(*form);//John tries to execute
+        delete form;//delete to free memory bc makeForm allocated it with new
     }
 
-    form = someRandomIntern.makeForm("shrubbery creation", "Home");
+    form = randomIntern.makeForm("shrubbery creation", "Home");
     if (form) 
 	{
         Bureaucrat mike("Mike", 140);
@@ -24,7 +24,7 @@ int main()
         delete form;
     }
 
-    form = someRandomIntern.makeForm("invalid form", "Nobody"); // Will fail
+    form = randomIntern.makeForm("invalid form", "Nobody"); // Should fail bc intern doesen't recognize
     delete form; // NULL is safe to delete
 
     return 0;

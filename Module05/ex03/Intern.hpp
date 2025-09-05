@@ -18,6 +18,5 @@ class Intern
 
 	    AForm* makeForm(const std::string& formName, const std::string& target);
 };
-
 #endif
-
+//Intern has to create forms, is his only job

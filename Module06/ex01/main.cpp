@@ -7,7 +7,7 @@ int main()
     data.number = 42;
     data.text = "Hello Serializer";
 
-    std::cout << "Original Data address: " << &data << std::endl;
+    std::cout << "Original Data address✉️ : " << &data << std::endl;
     std::cout << "Data.number: " << data.number << ", Data.text: " << data.text << std::endl;
 
     // Serialize

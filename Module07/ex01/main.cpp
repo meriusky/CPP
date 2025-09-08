@@ -1,14 +1,14 @@
 #include <iostream>
 #include "iter.hpp"
 
-// A sample function to print an element
+//sample function to print an element: observes the array
 template <typename T>
 void printElement(T& elem)
 {
     std::cout << elem << " ";
 }
 
-// Another sample function to increment numeric values
+//sample function: changes the array
 template <typename T>
 void increment(T& elem)
 {
@@ -41,4 +41,5 @@ int main()
 
     return 0;
 }
-
+//printelement for what? ➡️ iter funcion only call a function on eahc element, we needit to actually see results.
+//increment, for what? ➡️  This function serves a comlementary purpose to printElement. Its importat bc iter can not only rean elements but also modify them

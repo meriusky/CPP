@@ -23,6 +23,15 @@ int main(void)
     std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
 // c is lower bc the are the same exept for the las char and in the ASCII code
 // '1' is = 49 and '2' = 50 and 49<50
+	std::string x = "abc10";
+	std::string y = "abc2";
+	std::cout << "\nx before swap: " << x << ", y before swap: " << y << std::endl;
+	std::cout << "🪄swaping🪄" << std::endl;
+
+
+	std::cout << "min(x, y) = " << ::min(x, y) << std::endl;
+	std::cout << "max(x, y) = " << ::max(x, y) << std::endl;
+
     return 0;
 }
 

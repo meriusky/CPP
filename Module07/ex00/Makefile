@@ -3,7 +3,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Executable name
-NAME = templates
+NAME = whatever
 
 # Source files
 SRCS = main.cpp

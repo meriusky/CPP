@@ -17,7 +17,8 @@ void increment(T& elem)
 
 int main()
 {
-    // Test with int array
+    // Test with int arrayi
+	std::cout << "----Increment working check✅----" << std::endl;
     int intArray[5] = {1, 2, 3, 4, 5};
     std::cout << "Original intArray: ";
     iter(intArray, 5, printElement<int>);
@@ -29,6 +30,7 @@ int main()
     std::cout << std::endl << std::endl;
 
     // Test with string array
+	std::cout << "----String test check✅: should not change----" << std::endl;
     std::string strArray[3] = {"Hello", "World", "!"};
     std::cout << "Original strArray: ";
     iter(strArray, 3, printElement<std::string>);
@@ -41,5 +43,6 @@ int main()
 
     return 0;
 }
-//printelement for what? ➡️ iter funcion only call a function on eahc element, we needit to actually see results.
-//increment, for what? ➡️  This function serves a comlementary purpose to printElement. Its importat bc iter can not only rean elements but also modify them
+//GOAL: 
+//printelement for what? ➡️ iter funcion only call a function on each element, we needit to actually see results.
+//increment, for what? ➡️  This function serves a comlementary purpose to printElement. Its importat bc iter can not only read elements but also modify them

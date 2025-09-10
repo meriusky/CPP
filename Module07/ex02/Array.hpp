@@ -13,7 +13,7 @@ class Array
 
 	public:
 		Array() : _data(NULL), _size(0) {}
-    //Constructor with size
+//Constructor with size to create an array with a specific number of elements
 		Array(unsigned int n) : _data(new T[n]()), _size(n) {}
 	//Copy constructor
    		Array(const Array& other) : _data(NULL), _size(0)
@@ -44,14 +44,14 @@ class Array
 	        delete[] _data;
 	   }
 
-// Subscript operator (with bounds checking): Provides array like acces with[]
+// Subscript operator (with bounds checking): Provides array like acces with[], used for non-const version. Allows to read and write
 	    T& operator[](unsigned int index)
 	    {
 	        if (index >= _size)
 	            throw std::out_of_range("Index out of bounds");// it throws out_of_range if you try to access invalid indices
 	        return _data[index];
 	    }
-
+//Const version, lets you read but not write
 	    const T& operator[](unsigned int index) const
 	    {
 	        if (index >= _size)
@@ -67,14 +67,15 @@ class Array
 };
 #endif
 //Constructor whith size: Crates an array of size n. new T[n] allocates memory for n elements of type T and value initializes them (0 for num and empty string for std::string)
-//This class:
-//Wraps a dynamic array,
-//Manages memory safely,
-//Provides deep copies,
-//Provides bounds-checked [] access,
-//Is generic thanks to templates.
-//So it’s essentially a mini safer std::vector.
+//This class:Wraps a dynamic array, Manages memory safely, Provides deep copies,
+//Provides bounds-checked [] access,Is generic thanks to templates.So it’s essentially 
+//a mini safer std::vector.
 //
+//What is a pointer to a dynamically allocated array?
+//When we use new to create an array on the heap, it returs a pointer to the first element
+//
+//How 'this' works?
+//this -> is a pointer to the current object.
 
 
 /* EN CAS D'UTILITZAR .TPP

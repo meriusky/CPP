@@ -31,7 +31,7 @@ T const &max(T const &a, T const &b)
 }
 
 #endif
-//Function templates: Basically fuctions that work with any type without rewriting them
+//Function templates: Basically fuctions that work with any type without rewriting them. The compiler generates the right version automatically
 //
 //template <typename T> ➡️ Makes the function generetic, T is just de placeholder
 //
@@ -44,4 +44,4 @@ T const &max(T const &a, T const &b)
 //max ➡️ The same as min but with >
 //
 //return (a > b ? a : b) its a shorthand dor an if else
-//
+

@@ -12,13 +12,15 @@ int main()
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
-
+	sp.print();//to print all numbers	
+			   //
+	std::cout << "---- Calculating shortest and longest ----" << std::endl;
     std::cout << sp.shortestSpan() << std::endl; // 2
     std::cout << sp.longestSpan() << std::endl;  // 14
 
     std::cout << "---- Range test ----" << std::endl;
-    Span sp2(10000);
-    std::vector<int> v;
+    Span sp2(10000);//createsa Span capacity 10.000
+    std::vector<int> v;//10.000random numbers using std::rand()
     for (int i = 0; i < 10000; i++)
         v.push_back(std::rand());
 

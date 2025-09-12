@@ -39,7 +39,7 @@ int main()
 
 //GOAL: Write a function template that can search for an integer inside any STL container
 //
-//What is STL container: Standard Template Library
+//What is STL container: Standard Template Library Container
 //Container: Is a C++ class template that stores collection of objects in memory, giving you ways to organize, access and manipulate data. Like a smart box where I can put the data and later retrieve, search and modify it efficiently.
 //
 //We have several types of STL containers: each optimized for different use cases.

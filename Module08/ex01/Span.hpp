@@ -28,7 +28,7 @@ class Span
     	template <typename InputIterator>
     	void addRange(InputIterator begin, InputIterator end)
     	{
-			//MAke sure thet adding this many elements won't exceed the maximom capacity _N
+			//Make sure thet adding this many elements won't exceed the maximom capacity _N
         	if (_data.size() + std::distance(begin, end) > _N)
             	throw std::overflow_error("Not enough space in Span");
         	_data.insert(_data.end(), begin, end);//inserts the elements

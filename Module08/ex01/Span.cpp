@@ -36,7 +36,7 @@ int Span::shortestSpan() const
 
     int minSpan = tmp[1] - tmp[0];//📍
 	size_t i = 1;
-	while (i < tmp.size() - 1)// loop through stored array, chaching diferences between neightbors
+	while (i < tmp.size() - 1)// loop through stored array, cheking diferences between neightbors
 	{
     	int span = tmp[i + 1] - tmp[i];
     	if (span < minSpan)

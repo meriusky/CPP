@@ -14,7 +14,6 @@ int main()
 //Print all elements of the vector
     std::cout << "Vector elements: ";
 //Iteration from the begining (v.begin) to the end (v.end) with *it to get value
-//    for (std::vector<int>::iterator it = v.begin(); it != v.end(); ++it)
 	std::vector<int>::iterator it = v.begin();
 	while(it != v.end())
 	{

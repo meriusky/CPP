@@ -1,29 +1,47 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <stack>
+#include <stack>     //std::stack
 #include <string>
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
+#include <iostream>  //std::cout std::cerr
+#include <sstream>   //std::istringstream(to split input into tokens)
+#include <stdexcept> //std::runtime_error
 
 class RPN
 {
-public:
-    RPN();                             // default constructor
-    RPN(const std::string &expr);      // constructor with expression
-    RPN(const RPN &other);             // copy constructor
-    RPN& operator=(const RPN &other);  // assignment operator
-    ~RPN();
+	private:
+    	std::string expression_;            // store the RPN expression
 
-    int evaluate();                     // evaluate the stored expression
+	public:
+    	RPN();                            //default constructor:creates empty object
+    	RPN(const std::string &expr);//constructs an RPN storing the given expresion string
+    	RPN(const RPN &other);           //copy constructor: Initializes from another RPN
+    	RPN& operator=(const RPN &other);//assignment operator:assing one RPN to another
+    	~RPN();
 
-private:
-    std::string expression_;            // store the RPN expression
+    	int evaluate();
+//evaluate the stored expression: reads the stores expression_, tokenizes it, pushes the result back
 };
 
 #endif
-
+//What is a reverse Polish Notation (RPN)?
+// Normaly we write 3+4 (infix notation) but RPN you write operands first and then the 
+// operator 3 4 +
+//
+//Which container use?
+//	std::deque<int> std::list<int> because RPN evaluation works exactly like a stack
+//
+//General Algorithm
+//1. Split by spaces
+//2. For each token: if it's a number 0 to 9 push to the container
+//					 if it's operator(+ - / *:): check there are at least 2 num
+//					 							 Pop the top two num
+//					 							 Apply the operation
+//					 							 Push the result back
+//3. At the end: if the container has exactly 1 number, that's the result, otherwise error.
+//
+//Error cases: wrong num of arguments, Invalid tocken ("a" or " "), not enought operands
+//            , division by 0, stack not reducen to exactly 1 value at the end
 /*
 #include <string>
 #include <deque>// allows to push_back and op_back like stacks
@@ -46,21 +64,4 @@ class RPN
 };
 
 #endif*/
-//What is a reverse Polish Notation (RPN)?
-// Normaly we write 3+4 (infix notation) but RPN you write operands first and then the 
-// operator 3 4 +
-//
-//Which container use?
-//	std::deque<int> std::list<int> because RPN evaluation works exactly like a stack
-//
-//General Algorithm
-//1. Split by spaces
-//2. For each token: if it's a number 0 to 9 push to the container
-//					 if it's operator(+ - / *:): check there are at least 2 num
-//					 							 Pop the top two num
-//					 							 Apply the operation
-//					 							 Push the result back
-//3. At the end: if the container has exactly 1 number, that's the result, otherwise error.
-//
-//Error cases: wrong num of arguments, Invalid tocken ("a" or " "), not enought operands
-//            , division by 0, stack not reducen to exactly 1 value at the end
+

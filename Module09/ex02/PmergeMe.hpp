@@ -55,8 +55,6 @@ class PmergeMe
 };
 
 #endif
-
-
 //CLI arguments = Command Line Interference arguments
 //The are the words we type after the program's name when running it from the terminal
 //Exemple: ./PmergeMe->compiler 1 3 4 6-> the CLI

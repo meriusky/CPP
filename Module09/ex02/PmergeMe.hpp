@@ -1,70 +1,62 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <vector>// The two required containers
-#include <deque>// ""                       ""
-#include <string>//for parsing and output
-#include <iostream>// ""             ""
-#include <stdexcept>//for throwing errors
-#include <ctime>    // for clock()
+#include <vector>
+#include <deque>
+#include <string>
+#include <iostream>
+#include <stdexcept>
+#include <ctime>
 
 class PmergeMe
 {
-	private:
-        // Data storage
-        std::vector<int> numbersVector_;//Store sequence in a vector
-        std::deque<int>  numbersDeque_;// ""               "" deque
+    private:
+        std::vector<int> numbersVector_;
+        std::deque<int>  numbersDeque_;
 
-        // The actual Ford-Johnson (merge-insert) recursive algorithms
-        void mergeInsertSortVector(std::vector<int> &v);//recursive Ford-Johnson
-        void mergeInsertSortDeque(std::deque<int> &d);//
-        // Utility: binary insertion:Helper for inserting in sorted order
-        void binaryInsertVector(std::vector<int> &sorted, int value);        
-		void binaryInsertDeque(std::deque<int> &sorted, int value);
-        // Validation:check if an input number string is a valid positive integer
+        // Sorting algorithms
+        void mergeInsertSortVector(std::vector<int> &v);
+        void mergeInsertSortDeque(std::deque<int> &d);
+
+        // Binary insert helpers
+        void binaryInsertVector(std::vector<int> &sorted, int value);
+        void binaryInsertDeque(std::deque<int> &sorted, int value);
+
+        // Utility
         bool isNumber(const std::string &str) const;
 
+        // Printing helpers
+        void printBeforeVector() const;
+        void printBeforeDeque() const;
+        void printAfterVector() const;
+        void printAfterDeque() const;
+
     public:
-        // Constructors
+        // Canonical
         PmergeMe();
         PmergeMe(const PmergeMe &other);
         PmergeMe& operator=(const PmergeMe &other);
         ~PmergeMe();
 
-        // Parsing input arguments into containers
-        void parseInput(int argc, char **argv);//parse CLI arguments and fill both containers
+        // Input
+        void parseInput(int argc, char **argv);
 
-        // Sorting functions: call the algorithm for each container
+        // Sort
         void sortVector();
         void sortDeque();
 
-        // Printing functions
-		void printBefore() const
-		{
-    		printBeforeVector();
-    		printBeforeDeque();
-		}
+        // Printing wrappers
+        void printBefore() const;
+        void printAfter() const;
 
-		void printAfter() const
-		{
-    		printAfterVector();
-    		printAfterDeque();
-		}
-
-//		void printBeforeVector() const;
-//		void printBeforeDeque() const;
-//		void printAfterVector() const;
-//		void printAfterDeque() const;
- //       void printBefore() const;
-//        void printAfter() const; 
-
-        // Timing wrappers: to run the sort and the measure time
+        // Timing
         void measureVectorSort();
         void measureDequeSort();
-
- };
+};
 
 #endif
+
+
 //CLI arguments = Command Line Interference arguments
 //The are the words we type after the program's name when running it from the terminal
 //Exemple: ./PmergeMe->compiler 1 3 4 6-> the CLI

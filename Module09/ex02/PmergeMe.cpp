@@ -1,173 +1,148 @@
 #include "PmergeMe.hpp"
-#include <algorithm>
-#include <iostream>
-#include <ctime>
-#include <stdexcept>
+#include <sstream>
+#include <cstdlib>
 
-// -------------------- Constructors & Destructor --------------------
+// Canonical form
 PmergeMe::PmergeMe() {}
-// Copy constructor
-PmergeMe::PmergeMe(const PmergeMe &other): vec(other.vec), deq(other.deq) {}
-PmergeMe& PmergeMe::operator=(const PmergeMe &other)
-{
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+    : numbersVector_(other.numbersVector_), numbersDeque_(other.numbersDeque_) {}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
     if (this != &other) {
-        vec = other.vec;
-        deq = other.deq;
+        numbersVector_ = other.numbersVector_;
+        numbersDeque_ = other.numbersDeque_;
     }
     return *this;
 }
+
 PmergeMe::~PmergeMe() {}
-// -------------------- Public print functions --------------------
-void PmergeMe::printBeforeVector() const {
-    std::cout << "Before: ";
-    for (size_t i = 0; i < _vectorContainer.size(); ++i)
-        std::cout << _vectorContainer[i] << " ";
-    std::cout << std::endl;
-}
 
-void PmergeMe::printAfterVector() const {
-    std::cout << "After: ";
-    for (size_t i = 0; i < _vectorContainer.size(); ++i)
-        std::cout << _vectorContainer[i] << " ";
-    std::cout << std::endl;
-}
-void PmergeMe::binaryInsertVector(int value, size_t left, size_t right) {
-    size_t low = left, high = right;
-    while (low <= high) {
-        size_t mid = low + (high - low) / 2;
-        if (_vectorContainer[mid] < value)
-            low = mid + 1;
-        else
-            high = mid - 1;
-    }
-    _vectorContainer.insert(_vectorContainer.begin() + low, value);
-}
-
-void PmergeMe::binaryInsertDeque(int value, size_t left, size_t right) {
-    size_t low = left, high = right;
-    while (low <= high) {
-        size_t mid = low + (high - low) / 2;
-        if (_dequeContainer[mid] < value)
-            low = mid + 1;
-        else
-            high = mid - 1;
-    }
-    _dequeContainer.insert(_dequeContainer.begin() + low, value);
-}
-bool PmergeMe::isNumber(const std::string &s) {
-    for (size_t i = 0; i < s.size(); ++i) {
-        if (!isdigit(s[i]))
+// Utility
+bool PmergeMe::isNumber(const std::string &str) const {
+    if (str.empty())
+        return false;
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (!std::isdigit(str[i]))
             return false;
     }
     return true;
 }
 
-void PmergeMe::printBeforeDeque() const {
+// Parse CLI input
+void PmergeMe::parseInput(int argc, char **argv) {
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (!isNumber(arg))
+            throw std::runtime_error("Error: invalid input '" + arg + "'");
+
+        int value = std::atoi(arg.c_str());
+        if (value < 0)
+            throw std::runtime_error("Error: only positive integers allowed");
+
+        numbersVector_.push_back(value);
+        numbersDeque_.push_back(value);
+    }
+}
+
+// Printing wrappers
+void PmergeMe::printBefore() const {
+    printBeforeVector();
+}
+
+void PmergeMe::printAfter() const {
+    printAfterVector();
+}
+
+// Private printing helpers
+void PmergeMe::printBeforeVector() const {
     std::cout << "Before: ";
-    for (size_t i = 0; i < _dequeContainer.size(); ++i)
-        std::cout << _dequeContainer[i] << " ";
+    for (size_t i = 0; i < numbersVector_.size(); ++i)
+        std::cout << numbersVector_[i] << " ";
+    std::cout << std::endl;
+}
+
+void PmergeMe::printBeforeDeque() const {
+    std::cout << "Before (deque): ";
+    for (size_t i = 0; i < numbersDeque_.size(); ++i)
+        std::cout << numbersDeque_[i] << " ";
+    std::cout << std::endl;
+}
+
+void PmergeMe::printAfterVector() const {
+    std::cout << "After: ";
+    for (size_t i = 0; i < numbersVector_.size(); ++i)
+        std::cout << numbersVector_[i] << " ";
     std::cout << std::endl;
 }
 
 void PmergeMe::printAfterDeque() const {
-    std::cout << "After: ";
-    for (size_t i = 0; i < _dequeContainer.size(); ++i)
-        std::cout << _dequeContainer[i] << " ";
+    std::cout << "After (deque): ";
+    for (size_t i = 0; i < numbersDeque_.size(); ++i)
+        std::cout << numbersDeque_[i] << " ";
     std::cout << std::endl;
 }
-void PmergeMe::parseInput(int argc, char **argv) {
-    for (int i = 1; i < argc; ++i) {
-        std::string arg = argv[i];
-        if (!isNumber(arg)) {
-            std::cerr << "Error: invalid input => " << arg << std::endl;
-            throw std::runtime_error("Invalid input");
-        }
-        int value = atoi(arg.c_str());
-        addToVector(value);
-        addToDeque(value);
+
+// Binary insert (for sorted containers)
+void PmergeMe::binaryInsertVector(std::vector<int> &sorted, int value) {
+    size_t low = 0, high = sorted.size();
+    while (low < high) {
+        size_t mid = (low + high) / 2;
+        if (sorted[mid] < value)
+            low = mid + 1;
+        else
+            high = mid;
     }
+    sorted.insert(sorted.begin() + low, value);
 }
 
-// -------------------- Public sort functions --------------------
+void PmergeMe::binaryInsertDeque(std::deque<int> &sorted, int value) {
+    size_t low = 0, high = sorted.size();
+    while (low < high) {
+        size_t mid = (low + high) / 2;
+        if (sorted[mid] < value)
+            low = mid + 1;
+        else
+            high = mid;
+    }
+    sorted.insert(sorted.begin() + low, value);
+}
+
+// Sorting (dummy for now — replace with Ford-Johnson later)
+void PmergeMe::mergeInsertSortVector(std::vector<int> &v) {
+    std::sort(v.begin(), v.end());
+}
+
+void PmergeMe::mergeInsertSortDeque(std::deque<int> &d) {
+    std::sort(d.begin(), d.end());
+}
+
 void PmergeMe::sortVector() {
-    mergeInsertSortVector(_vectorContainer, 0, _vectorContainer.size() - 1);
+    mergeInsertSortVector(numbersVector_);
 }
 
 void PmergeMe::sortDeque() {
-    mergeInsertSortDeque(_dequeContainer, 0, _dequeContainer.size() - 1);
+    mergeInsertSortDeque(numbersDeque_);
 }
 
-// -------------------- Private merge-insert sort for vector --------------------
-void PmergeMe::mergeInsertSortVector(std::vector<int> &vec, size_t left, size_t right) {
-    if (left >= right) return;
-
-    // Split
-    size_t mid = left + (right - left) / 2;
-    mergeInsertSortVector(vec, left, mid);
-    mergeInsertSortVector(vec, mid + 1, right);
-
-    // Merge using insertion
-    std::vector<int> temp(right - left + 1);
-    size_t i = left, j = mid + 1, k = 0;
-
-    while (i <= mid && j <= right) {
-        if (vec[i] < vec[j])
-            temp[k++] = vec[i++];
-        else
-            temp[k++] = vec[j++];
-    }
-    while (i <= mid) temp[k++] = vec[i++];
-    while (j <= right) temp[k++] = vec[j++];
-
-    for (size_t t = 0; t < temp.size(); ++t)
-        vec[left + t] = temp[t];
-}
-
-// -------------------- Private merge-insert sort for deque --------------------
-void PmergeMe::mergeInsertSortDeque(std::deque<int> &dq, size_t left, size_t right) {
-    if (left >= right) return;
-
-    size_t mid = left + (right - left) / 2;
-    mergeInsertSortDeque(dq, left, mid);
-    mergeInsertSortDeque(dq, mid + 1, right);
-
-    std::deque<int> temp;
-    size_t i = left, j = mid + 1;
-
-    while (i <= mid && j <= right) {
-        if (dq[i] < dq[j])
-            temp.push_back(dq[i++]);
-        else
-            temp.push_back(dq[j++]);
-    }
-    while (i <= mid) temp.push_back(dq[i++]);
-    while (j <= right) temp.push_back(dq[j++]);
-
-    for (size_t t = 0; t < temp.size(); ++t)
-        dq[left + t] = temp[t];
-}
-
-// -------------------- Timing functions --------------------
-double PmergeMe::measureVectorSort() {
-    clock_t start = std::clock();
+// Timing wrappers
+void PmergeMe::measureVectorSort() {
+    clock_t start = clock();
     sortVector();
-    clock_t end = std::clock();
-    return double(end - start) / CLOCKS_PER_SEC;
+    clock_t end = clock();
+    double elapsed = double(end - start) / CLOCKS_PER_SEC * 1e6;
+    std::cout << "Time to process " << numbersVector_.size()
+              << " elements with std::vector: "
+              << elapsed << " us" << std::endl;
 }
 
-double PmergeMe::measureDequeSort() {
-    clock_t start = std::clock();
+void PmergeMe::measureDequeSort() {
+    clock_t start = clock();
     sortDeque();
-    clock_t end = std::clock();
-    return double(end - start) / CLOCKS_PER_SEC;
-}
-
-// -------------------- Functions to populate containers --------------------
-void PmergeMe::addToVector(int n) {
-    _vectorContainer.push_back(n);
-}
-
-void PmergeMe::addToDeque(int n) {
-    _dequeContainer.push_back(n);
+    clock_t end = clock();
+    double elapsed = double(end - start) / CLOCKS_PER_SEC * 1e6;
+    std::cout << "Time to process " << numbersDeque_.size()
+              << " elements with std::deque: "
+              << elapsed << " us" << std::endl;
 }
 

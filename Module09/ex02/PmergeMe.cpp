@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 #include <sstream>
 #include <cstdlib>
+#include <algorithm>
 
 // Canonical form
 PmergeMe::PmergeMe() {}

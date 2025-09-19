@@ -3,10 +3,10 @@
 
 #include <vector>
 #include <deque>
-#include <string>
+#include <string>//for handling CLI arguments
 #include <iostream>
-#include <stdexcept>
-#include <ctime>
+#include <stdexcept>//throwing errors (std::runtime_error)
+#include <ctime>//to measure execution time (clock())
 
 class PmergeMe
 {
@@ -14,42 +14,42 @@ class PmergeMe
         std::vector<int> numbersVector_;
         std::deque<int>  numbersDeque_;
 
-        // Sorting algorithms
-        void mergeInsertSortVector(std::vector<int> &v);
+        //Sorting algorithms: implement Ford-Johnson sort
+        void mergeInsertSortVector(std::vector<int> &v);//take & so they can modify the container directly
         void mergeInsertSortDeque(std::deque<int> &d);
 
-        // Binary insert helpers
+        //Binary insert helpers: help insert numbers into stored sequence using binary search
+        //Like asubrutine used by mergeInsertSort...
         void binaryInsertVector(std::vector<int> &sorted, int value);
         void binaryInsertDeque(std::deque<int> &sorted, int value);
 
-        // Utility
+        //Checks if a string is valid positive integer
         bool isNumber(const std::string &str) const;
 
-        // Printing helpers
-        void printBeforeVector() const;
+        //Printing helpers
+        void printBeforeVector() const;//const bc they don't change objects
         void printBeforeDeque() const;
         void printAfterVector() const;
         void printAfterDeque() const;
 
     public:
-        // Canonical
-        PmergeMe();
-        PmergeMe(const PmergeMe &other);
-        PmergeMe& operator=(const PmergeMe &other);
+        PmergeMe();//creates empty object
+        PmergeMe(const PmergeMe &other);//allows copy PmergeMe objects
+        PmergeMe& operator=(const PmergeMe &other);//allows to do assignment obj1 = obj2
         ~PmergeMe();
 
-        // Input
+        //Input: Takes input and fills both numberVector_ and numberDeque_
         void parseInput(int argc, char **argv);
 
-        // Sort
+        //Sort: they call the merge-insert sort
         void sortVector();
         void sortDeque();
 
-        // Printing wrappers
+        //Printing wrappers: for before and after, they call teh private helper printers
         void printBefore() const;
         void printAfter() const;
 
-        // Timing
+        //Timing: Run the sorting algorithm and measure how long it takes
         void measureVectorSort();
         void measureDequeSort();
 };

@@ -15,18 +15,18 @@ int main(int argc, char **argv)
     {
         PmergeMe sorter;
 
-        // Parse CLI arguments and fill containers
+        //Parse CLI arguments and fill containers
         sorter.parseInput(argc, argv);
 
-        // Print before sorting
-       // std::cout << "Before sorting:" << std::endl;
+        //Print before sorting
+       //std::cout << "Before sorting:" << std::endl;
         sorter.printBefore();  // Calls both printBeforeVector and printBeforeDeque
         
-        // Print after sorting
-       // std::cout << "After sorting:" << std::endl;
+        //Print after sorting
+       //std::cout << "After sorting:" << std::endl;
         sorter.printAfter();   // Calls both printAfterVector and printAfterDeque
         
-        // Sort and measure
+        //Sort and measure
         sorter.measureVectorSort();
         sorter.measureDequeSort();
 

@@ -19,16 +19,18 @@ int main(int argc, char **argv)
         sorter.parseInput(argc, argv);
 
         // Print before sorting
-        std::cout << "Before sorting:" << std::endl;
+       // std::cout << "Before sorting:" << std::endl;
         sorter.printBefore();  // Calls both printBeforeVector and printBeforeDeque
-
+        
+        // Print after sorting
+       // std::cout << "After sorting:" << std::endl;
+        sorter.printAfter();   // Calls both printAfterVector and printAfterDeque
+        
         // Sort and measure
         sorter.measureVectorSort();
         sorter.measureDequeSort();
 
-        // Print after sorting
-        std::cout << "After sorting:" << std::endl;
-        sorter.printAfter();   // Calls both printAfterVector and printAfterDeque
+        
     }
     catch (const std::exception &e)
     {

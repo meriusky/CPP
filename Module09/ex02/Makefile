@@ -13,7 +13,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 # Link objects into executable
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) Makefile
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 # Compile .cpp to .o

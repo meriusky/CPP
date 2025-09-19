@@ -25,7 +25,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 	{
         std::istringstream ss(line);
         std::string date, rateStr;
-		//for each data line, uses std::istringstream ans splits on the comma
+		//for each data line, splits on the comma
         if (std::getline(ss, date, ',') && std::getline(ss, rateStr)) 
 		{
 			float rate = atof(rateStr.c_str());//converts the string to float

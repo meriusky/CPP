@@ -62,7 +62,7 @@ void PmergeMe::printAfter() const
 // Private printing helpers
 void PmergeMe::printBeforeVector() const 
 {
-    std::cout << "Before: ";
+    std::cout << "Before Vector: ";
     for (size_t i = 0; i < numbersVector_.size(); ++i)
         std::cout << numbersVector_[i] << " ";
     std::cout << std::endl;
@@ -70,7 +70,7 @@ void PmergeMe::printBeforeVector() const
 
 void PmergeMe::printBeforeDeque() const 
 {
-    std::cout << "Before (deque): ";
+    std::cout << "Before Deque: ";
     for (size_t i = 0; i < numbersDeque_.size(); ++i)
         std::cout << numbersDeque_[i] << " ";
     std::cout << std::endl;
@@ -78,7 +78,7 @@ void PmergeMe::printBeforeDeque() const
 
 void PmergeMe::printAfterVector() const 
 {
-    std::cout << "After: ";
+    std::cout << "After Vector: ";
     for (size_t i = 0; i < numbersVector_.size(); ++i)
         std::cout << numbersVector_[i] << " ";
     std::cout << std::endl;
@@ -86,7 +86,7 @@ void PmergeMe::printAfterVector() const
 
 void PmergeMe::printAfterDeque() const 
 {
-    std::cout << "After (deque): ";
+    std::cout << "After Deque: ";
     for (size_t i = 0; i < numbersDeque_.size(); ++i)
         std::cout << numbersDeque_[i] << " ";
     std::cout << std::endl;
@@ -123,8 +123,8 @@ void PmergeMe::binaryInsertDeque(std::deque<int> &sorted, int value)
 // Ford-Johnson (Merge-Insert) for vector
 void PmergeMe::mergeInsertSortVector(std::vector<int> &v) 
 {
-    if (v.size() <= 1) return; // already sorted
-
+	//Without this line, the recursive sorting algorithm is insafe and may crash or never terminate
+    if (v.size() <= 1) return;
     std::vector<int> sorted;//empty stored container
     sorted.push_back(v[0]); //push the first element
 

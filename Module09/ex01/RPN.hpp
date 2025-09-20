@@ -42,26 +42,3 @@ class RPN
 //
 //Error cases: wrong num of arguments, Invalid tocken ("a" or " "), not enought operands
 //            , division by 0, stack not reducen to exactly 1 value at the end
-/*
-#include <string>
-#include <deque>// allows to push_back and op_back like stacks
-#include <iostream>
-#include <stdexcept>
-
-class RPN
-{
-	private:
-    	std::deque<int> _stack;//container to simulate stack behavior
-
-	public:
-    	RPN();
-    	RPN(const RPN &other);
-    	RPN &operator=(const RPN &other);
-    	~RPN();
-
-    	int evaluate(const std::string &expression); //evaluate an RPN expression
-//takes the input string, returns the computed integer result
-};
-
-#endif*/
-

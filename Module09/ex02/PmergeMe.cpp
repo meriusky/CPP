@@ -93,6 +93,7 @@ void PmergeMe::printAfterDeque() const
 }
 
 // Binary insert(for sorted containers): &sorted is already sorted, value is the new number
+//help insert numbers into stored sequence
 void PmergeMe::binaryInsertVector(std::vector<int> &sorted, int value) 
 {
     size_t low = 0, high = sorted.size();//low= beginning of the vector hight= one past the end of the vector 

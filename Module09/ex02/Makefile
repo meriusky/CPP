@@ -17,7 +17,7 @@ $(NAME): $(OBJS) Makefile
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 # Compile .cpp to .o
-%.o: %.cpp PmergeMe.hpp
+%.o: %.cpp PmergeMe.hpp Makefile
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Remove object files

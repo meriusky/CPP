@@ -1,8 +1,7 @@
 #include "PmergeMe.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "PmergeMe.hpp"
-#include <iostream>
+
 
 int main(int argc, char **argv)
 {
@@ -22,14 +21,13 @@ int main(int argc, char **argv)
        //std::cout << "Before sorting:" << std::endl;
         sorter.printBefore();  // Calls both printBeforeVector and printBeforeDeque
         
-        //Print after sorting
-       //std::cout << "After sorting:" << std::endl;
-        sorter.printAfter();   // Calls both printAfterVector and printAfterDeque
-        
         //Sort and measure
         sorter.measureVectorSort();
         sorter.measureDequeSort();
 
+       //Print after sorting
+       //std::cout << "After sorting:" << std::endl;
+        sorter.printAfter();   // Calls both printAfterVector and printAfterDequeu
         
     }
     catch (const std::exception &e)
@@ -40,3 +38,10 @@ int main(int argc, char **argv)
 
     return 0;
 }
+//GOAL:
+//1.Implement a program called PmergeMe that sorts a sequence of positive 
+//integers given as command-line arguments.
+//2.You must use the Ford–Johnson algorithm (merge-insert sort).
+//3.The program must handle large sequences (≥ 3000 integers) efficiently.
+//4.Use at least two different STL containers (commonly std::vector and std::deque) 
+//to demonstrate performance differences.

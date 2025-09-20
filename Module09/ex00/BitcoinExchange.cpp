@@ -12,7 +12,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &other)//deep 
 }
 BitcoinExchange::~BitcoinExchange() {}
 
-// Load the CSV database
+//Load the CSV database:reads CSV database and fills _db
 void BitcoinExchange::loadDatabase(const std::string &filename) 
 {
     std::ifstream file(filename.c_str());//opens CSV
@@ -87,16 +87,18 @@ void BitcoinExchange::processInput(const std::string &filename) const
 // Validate date (YYYY-MM-DD basic check)
 bool BitcoinExchange::validDate(const std::string &date) const 
 {
-	//????
+	//Check lenght and dash position
     if (date.size() != 10 || date[4] != '-' || date[7] != '-') return false;
-	int y = atoi(date.substr(0, 4).c_str());
+	//Extract year, month, day as integer
+    int y = atoi(date.substr(0, 4).c_str());
     int m = atoi(date.substr(5, 2).c_str());
     int d = atoi(date.substr(8, 2).c_str());
+    //Check ranges for year, month, day
     if (y < 2000 || m < 1 || m > 12 || d < 1 || d > 31) return false;
     return true;
 }
 
-// Validate value
+//Validate value: Check value is positive float or int, not too large
 bool BitcoinExchange::validValue(const std::string &valueStr, float &value) const 
 {
     value = atof(valueStr.c_str());//to covert string to float
@@ -113,7 +115,7 @@ bool BitcoinExchange::validValue(const std::string &valueStr, float &value) cons
     return true;
 }
 
-// Get rate for date (closest earlier date)
+//Get rate for date: Gets the closest earlier date in case they don't match
 float BitcoinExchange::getRateForDate(const std::string &date) const 
 {
 	//lower_bound(date) finds the first element not less that date

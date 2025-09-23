@@ -83,18 +83,35 @@ void BitcoinExchange::processInput(const std::string &filename) const
         }
     }
 }
-
-// Validate date (YYYY-MM-DD basic check)
+// Validate date (YYYY-MM-DD with proper month/day limits)
 bool BitcoinExchange::validDate(const std::string &date) const 
 {
-	//Check lenght and dash position
-    if (date.size() != 10 || date[4] != '-' || date[7] != '-') return false;
-	//Extract year, month, day as integer
+    // Check length and dash positions
+    if (date.size() != 10 || date[4] != '-' || date[7] != '-') 
+        return false;
+
+    // Extract year, month, day
     int y = atoi(date.substr(0, 4).c_str());
     int m = atoi(date.substr(5, 2).c_str());
     int d = atoi(date.substr(8, 2).c_str());
-    //Check ranges for year, month, day
-    if (y < 2000 || m < 1 || m > 12 || d < 1 || d > 31) return false;
+
+    // Year must be reasonable (example: Bitcoin started 2009)
+    if (y < 2000 || m < 1 || m > 12 || d < 1) 
+        return false;
+
+    // Days in each month (default February has 28 days)
+    int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 
+                           31, 31, 30, 31, 30, 31};
+
+    // Handle leap year for February
+    bool leap = (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0));
+    if (leap) 
+        daysInMonth[1] = 29;
+
+    // Check if day is within the correct month’s range
+    if (d > daysInMonth[m - 1]) 
+        return false;
+
     return true;
 }
 

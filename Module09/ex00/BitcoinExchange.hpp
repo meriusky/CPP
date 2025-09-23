@@ -34,4 +34,8 @@ class BitcoinExchange
 #endif
 //_db is a map container where: key-> date as string(YYYY-MM-DD). 
 //Keys are automatically stored, this helps finding the closest previos date
-
+//
+//What container I use? std::map
+//Stores key/value pairs, where each key is unique (date -> price)
+//Automatically sorted by keys: keys (YYYY-MM-DD), and for the previous closest date
+//Powerful navigation functions (lower_bound(key), upper_bound(key)) 

@@ -28,9 +28,10 @@ class RPN
 // Normaly we write 3+4 (infix notation) but RPN you write operands first and then the 
 // operator 3 4 +
 //
-//Which container use?
-//	std::deque<int> std::list<int> because RPN evaluation works exactly like a stack
-//
+//Which container use and why?
+//	std::stack<int>, this container allows us to use pop, push and top, like an stack, 
+//  so there for is the best choice
+
 //General Algorithm
 //1. Split by spaces
 //2. For each token: if it's a number 0 to 9 push to the container

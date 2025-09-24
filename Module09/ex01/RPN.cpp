@@ -17,7 +17,7 @@ RPN::~RPN() {}
 // Evaluate the stored RPN expression
 int RPN::evaluate()
 {
-    std::stack<int> s;//stack to hold intermediate results during evaluation
+    std::stack<int> s;//CONTAINER stack to hold intermediate results during evaluation
     std::istringstream iss(expression_);//For dividing in spaces
     std::string token;//temporary string to store each token
 

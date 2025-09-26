@@ -90,7 +90,7 @@ void PmergeMe::printAfterDeque() const
 }
 
 // Binary insertion helper
-void binaryInsertVector(std::vector<int> &sorted, int value) 
+void PmergeMe::binaryInsertVector(std::vector<int> &sorted, int value) 
 {
     size_t low = 0;//begining
     size_t high = sorted.size();//end
@@ -104,7 +104,7 @@ void binaryInsertVector(std::vector<int> &sorted, int value)
     }
     sorted.insert(sorted.begin() + low, value);
 }
-void binaryInsertDeque(std::deque<int> &sorted, int value) 
+void PmergeMe::binaryInsertDeque(std::deque<int> &sorted, int value) 
 {
     size_t low = 0;
     size_t high = sorted.size();
@@ -120,7 +120,7 @@ void binaryInsertDeque(std::deque<int> &sorted, int value)
 }
 
 // Ford-Johnson / Merge-Insert sort
-void fordJohnsonSortVector(std::vector<int> &arr) 
+void PmergeMe::fordJohnsonSortVector(std::vector<int> &arr) 
 {
     if (arr.size() <= 1) return;
 
@@ -159,7 +159,7 @@ void fordJohnsonSortVector(std::vector<int> &arr)
     //Copy back
     arr = sorted;
 }
-void fordJohnsonSortDeque(std::deque<int> &d) 
+void PmergeMe::fordJohnsonSortDeque(std::deque<int> &d) 
 {
     if (d.size() <= 1) return;
 

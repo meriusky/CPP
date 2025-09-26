@@ -15,8 +15,8 @@ class PmergeMe
         std::deque<int>  numbersDeque_;
 
         //Sorting algorithms: implement Ford-Johnson sort
-        void mergeInsertSortVector(std::vector<int> &v);//take & to modify the container directly
-        void mergeInsertSortDeque(std::deque<int> &d);
+        void fordJohnsonSortVector(std::vector<int> &v);//take & to modify the container directly
+        void fordJohnsonSortDeque(std::deque<int> &d);
 
         //Binary insert helpers: help insert numbers into stored sequence using binary search
         //Like asubrutine used by mergeInsertSort...

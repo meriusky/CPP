@@ -9,7 +9,8 @@ PmergeMe::PmergeMe() {}
 PmergeMe::PmergeMe(const PmergeMe &other): numbersVector_(other.numbersVector_), numbersDeque_(other.numbersDeque_) {}
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) 
 {
-    if (this != &other) {
+    if (this != &other) 
+    {
         numbersVector_ = other.numbersVector_;
         numbersDeque_ = other.numbersDeque_;
     }

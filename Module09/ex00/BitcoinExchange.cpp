@@ -103,7 +103,7 @@ bool BitcoinExchange::validDate(const std::string &date) const
     int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 
                            31, 31, 30, 31, 30, 31};
 
-    // Handle leap year for February
+    //leap year for February,c
     bool leap = (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0));
     if (leap) 
         daysInMonth[1] = 29;
@@ -145,4 +145,14 @@ float BitcoinExchange::getRateForDate(const std::string &date) const
     }
     return it->second;
 }
+//Fact about leap years!!!
 
+// Century years: divisible by 100
+// Every 100 years, if we added a leap day, we’d be slightly off.
+// To fix that, century years are not leap years.
+// Example: 1900 % 100 == 0 → not leap.
+
+// Exception: divisible by 400
+// Every 400 years, we do add a leap day to compensate for the tiny discrepancy left by skipping century years.
+// So a year divisible by 400 is a leap year.
+// Example: 2000 % 400 == 0 → leap year.

@@ -53,10 +53,12 @@ void PmergeMe::parseInput(int argc, char **argv)
 void PmergeMe::printBefore() const 
 {
     printBeforeVector();
+    printBeforeDeque();
 }
 void PmergeMe::printAfter() const 
 {
     printAfterVector();
+    printAfterDeque();
 }
 
 //🖨️Private printing helpers🖨️

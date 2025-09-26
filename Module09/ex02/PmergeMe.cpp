@@ -17,7 +17,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &other)
 }
 PmergeMe::~PmergeMe() {}
 
-// Utility
 bool PmergeMe::isNumber(const std::string &str) const 
 {
     if (str.empty())
@@ -30,7 +29,7 @@ bool PmergeMe::isNumber(const std::string &str) const
     return true;
 }
 
-// Parse CLI input
+//Parse CLI input
 void PmergeMe::parseInput(int argc, char **argv) 
 {
     for (int i = 1; i < argc; ++i) //loop through the command line arguments
@@ -49,7 +48,7 @@ void PmergeMe::parseInput(int argc, char **argv)
     }
 }
 
-// Printing wrappers
+//🖨️Printing🖨️
 void PmergeMe::printBefore() const 
 {
     printBeforeVector();
@@ -59,7 +58,7 @@ void PmergeMe::printAfter() const
     printAfterVector();
 }
 
-// Private printing helpers
+//🖨️Private printing helpers🖨️
 void PmergeMe::printBeforeVector() const 
 {
     std::cout << "Before Vector: ";
@@ -67,7 +66,6 @@ void PmergeMe::printBeforeVector() const
         std::cout << numbersVector_[i] << " ";
     std::cout << std::endl;
 }
-
 void PmergeMe::printBeforeDeque() const 
 {
     std::cout << "Before Deque: ";
@@ -75,7 +73,6 @@ void PmergeMe::printBeforeDeque() const
         std::cout << numbersDeque_[i] << " ";
     std::cout << std::endl;
 }
-
 void PmergeMe::printAfterVector() const 
 {
     std::cout << "After Vector: ";
@@ -83,7 +80,6 @@ void PmergeMe::printAfterVector() const
         std::cout << numbersVector_[i] << " ";
     std::cout << std::endl;
 }
-
 void PmergeMe::printAfterDeque() const 
 {
     std::cout << "After Deque: ";
@@ -92,27 +88,13 @@ void PmergeMe::printAfterDeque() const
     std::cout << std::endl;
 }
 
-// Binary insert(for sorted containers): &sorted is already sorted, value is the new number
-//help insert numbers into stored sequence
-void PmergeMe::binaryInsertVector(std::vector<int> &sorted, int value) 
+// Binary insertion helper
+void binaryInsertVector(std::vector<int> &sorted, int value) 
 {
-    size_t low = 0, high = sorted.size();//low= beginning of the vector hight= one past the end of the vector 
-    while (low < high) 
+    size_t low = 0;//begining
+    size_t high = sorted.size();//end
+    while (low < high) //while it doesen't reach the end
     {
-        size_t mid = (low + high) / 2;//find the middle element value
-        if (sorted[mid] < value)//if yes, the new element must go after mid
-            low = mid + 1;
-        else
-            high = mid;
-    }
-//take the calculated position low and inserts the new valure right there.
-//the std::vector shifts all elements after low.
-    sorted.insert(sorted.begin() + low, value);
-}
-void PmergeMe::binaryInsertDeque(std::deque<int> &sorted, int value) 
-{
-    size_t low = 0, high = sorted.size();
-    while (low < high) {
         size_t mid = (low + high) / 2;
         if (sorted[mid] < value)
             low = mid + 1;
@@ -121,46 +103,102 @@ void PmergeMe::binaryInsertDeque(std::deque<int> &sorted, int value)
     }
     sorted.insert(sorted.begin() + low, value);
 }
-// Ford-Johnson (Merge-Insert) for vector
-void PmergeMe::mergeInsertSortVector(std::vector<int> &v) 
+void binaryInsertDeque(std::deque<int> &sorted, int value) 
 {
-	//Without this line, the recursive sorting algorithm is insafe and may crash or never terminate
-    if (v.size() <= 1) return;
-    std::vector<int> sorted;//empty stored container
-    sorted.push_back(v[0]); //push the first element
-
-    // Insert remaining elements using binaryInsertVector
-    for (size_t i = 1; i < v.size(); ++i)
+    size_t low = 0;
+    size_t high = sorted.size();
+    while (low < high) 
     {
-        binaryInsertVector(sorted, v[i]);
+        size_t mid = (low + high) / 2;
+        if (sorted[mid] < value)
+            low = mid + 1;
+        else
+            high = mid;
     }
-
-    v = sorted; // copy back sorted elements
+    sorted.insert(sorted.begin() + low, value);
 }
 
-// Ford-Johnson (Merge-Insert) for deque
-void PmergeMe::mergeInsertSortDeque(std::deque<int> &d) 
+// Ford-Johnson / Merge-Insert sort
+void fordJohnsonSortVector(std::vector<int> &arr) 
+{
+    if (arr.size() <= 1) return;
+
+    std::vector<int> sorted;
+    
+    //Create pairs and push the smaller of each pair to sorted
+    for (size_t i = 0; i + 1 < arr.size(); i += 2) 
+    {
+        if (arr[i] < arr[i + 1])
+            sorted.push_back(arr[i]);
+        else
+            sorted.push_back(arr[i + 1]);
+    }
+    
+    int leftover = -1;//for odd numbers(impar)
+    bool hasLeftover = false;
+    if (arr.size() % 2 != 0) 
+    {
+        leftover = arr.back();
+        hasLeftover = true;
+    }
+
+    fordJohnsonSortVector(sorted);//Recursively
+
+    //Insert the larger elements of each pair in order
+    for (size_t i = 0; i + 1 < arr.size(); i += 2) 
+    {
+        int larger = (arr[i] > arr[i + 1]) ? arr[i] : arr[i + 1];
+        binaryInsertVector(sorted, larger);
+    }
+
+    //Insert leftover if there was one
+    if (hasLeftover)
+        binaryInsertVector(sorted, leftover);
+
+    //Copy back
+    arr = sorted;
+}
+void fordJohnsonSortDeque(std::deque<int> &d) 
 {
     if (d.size() <= 1) return;
 
     std::deque<int> sorted;
-    sorted.push_back(d[0]);
-
-    for (size_t i = 1; i < d.size(); ++i)
+    for (size_t i = 0; i + 1 < d.size(); i += 2) 
     {
-        binaryInsertDeque(sorted, d[i]);
+        if (d[i] < d[i + 1])
+            sorted.push_back(d[i]);
+        else
+            sorted.push_back(d[i + 1]);
     }
+
+    int leftover = -1;
+    bool hasLeftover = false;
+    if (d.size() % 2 != 0) {
+        leftover = d.back();
+        hasLeftover = true;
+    }
+
+    fordJohnsonSortDeque(sorted);
+
+    for (size_t i = 0; i + 1 < d.size(); i += 2) 
+    {
+        int larger = (d[i] > d[i + 1]) ? d[i] : d[i + 1];
+        binaryInsertDeque(sorted, larger);
+    }
+    if (hasLeftover)
+        binaryInsertDeque(sorted, leftover);
 
     d = sorted;
 }
+
 void PmergeMe::sortVector() 
 {
-    mergeInsertSortVector(numbersVector_);
+    fordJohnsonSortVector(numbersVector_);
 }
 
 void PmergeMe::sortDeque() 
 {
-    mergeInsertSortDeque(numbersDeque_);
+    fordJohnsonSortDeque(numbersDeque_);
 }
 
 // Timing wrappers
@@ -190,4 +228,17 @@ void PmergeMe::measureDequeSort()
               << std::fixed << std::setprecision(3)  // <-- controls decimals
               << elapsed << " us" << std::endl;
 }
+//How binary works?
+// Suppose sorted = {2, 4, 6, 8} and value = 5.
 
+// low = 0, high = 4
+// mid = 2 → sorted[2] = 6
+// Since 6 > 5 → high = mid = 2
+
+// low = 0, high = 2
+// mid = 1 → sorted[1] = 4
+// Since 4 < 5 → low = mid + 1 = 2
+
+// low = 2, high = 2 → loop ends
+
+// Insert at index 2 → sorted = {2, 4, 5, 6, 8} ✅

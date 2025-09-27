@@ -150,7 +150,12 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int> &arr)
     //Insert the larger elements of each pair in order
     for (size_t i = 0; i + 1 < arr.size(); i += 2) 
     {
-        int larger = (arr[i] > arr[i + 1]) ? arr[i] : arr[i + 1];
+        // int larger = (arr[i] > arr[i + 1]) ? arr[i] : arr[i + 1];
+        int larger;
+        if (arr[i] > arr[i + 1])
+            larger = arr[i];
+        else
+            larger = arr[i + 1];
         binaryInsertVector(sorted, larger);
     }
 
@@ -185,7 +190,11 @@ void PmergeMe::fordJohnsonSortDeque(std::deque<int> &d)
 
     for (size_t i = 0; i + 1 < d.size(); i += 2) 
     {
-        int larger = (d[i] > d[i + 1]) ? d[i] : d[i + 1];
+        int larger;
+        if (d[i] > d[i + 1])
+            larger = d[i];
+        else
+            larger = d[i + 1];
         binaryInsertDeque(sorted, larger);
     }
     if (hasLeftover)

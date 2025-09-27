@@ -3,7 +3,7 @@
 #include <cctype>
 
 RPN::RPN() : expression_("") {}//sets expression_ to an empty string
-// Constructor with expression
+
 RPN::RPN(const std::string &expr) : expression_(expr) {}//Initializes private member expression_
 RPN::RPN(const RPN &other) : expression_(other.expression_) {}//copy constructor
 RPN& RPN::operator=(const RPN &other)//copy the asigment operator
@@ -17,9 +17,9 @@ RPN::~RPN() {}
 // Evaluate the stored RPN expression
 int RPN::evaluate()
 {
-    std::stack<int> s;//CONTAINER stack to hold intermediate results during evaluation
+    std::stack<int> s;//CONTAINER stack hold results 
     std::istringstream iss(expression_);//For dividing in spaces
-    std::string token;//temporary string to store each token
+    std::string token;//string to store each token
 
 //reads the next whitespace then reads characters up to the next withespace
     while (iss >> token)//reads tokens one by one
@@ -56,7 +56,6 @@ int RPN::evaluate()
             throw std::runtime_error("Error: invalid token");
         }
     }
-
     if (s.size() != 1)//exactly one value check
         throw std::runtime_error("Error: invalid RPN expression");
 
